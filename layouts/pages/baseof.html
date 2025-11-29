@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode }}">
+<head>
+    {{- partial "head.html" . -}}
+</head>
+<body a="{{ $.Site.Params.theme_config.appearance | default "auto" }}">
+    <main class="page-content" aria-label="Content">
+        <div class="w">
+            
+            {{ if .IsHome }}
+            <header class="site-header">
+                <h1 class="site-title">{{ .Site.Title }}</h1>
+                <div class="header-nav">
+                    <div class="menu-links">
+                        {{ $currentLang := $.Site.Language.Lang }}
+                        {{ $pages := where (where .Site.RegularPages "Section" "pages") "Lang" $currentLang }}
+                        {{ range $pages }}
+                            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                        {{ end }}
+                    </div>
+                    <div class="language-switcher">
+                        {{ if gt (len $.Site.Home.AllTranslations) 1 }}
+                            {{ range $.Site.Home.AllTranslations }}
+                                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+                            {{ end }}
+                        {{ end }}
+                    </div>
+                </div>
+            </header>
+            {{ end }}
+
+            {{ block "main" . }}{{ end }}
+
+
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{{- $rssLimit := .Site.Params.rssLimit | default 15 -}}
+<rss version="2.0">
+    <channel>
+        <title>{{ i18n "rss.rss_title" }}</title>
+        <link>{{ .Permalink }}</link>
+        <description>{{ i18n "rss.rss_description" }}</description>
+        <language>{{ .Site.Language.Lang }}</language>
+        {{ $posts := where .Site.RegularPages "Section" "posts" }}
+        {{ $localizedPosts := where $posts "Lang" .Site.Language.Lang }}
+        {{ range first $rssLimit $localizedPosts }}
+        <item>
+            <title>{{ .Title }}</title>
+            <link>{{ .Permalink }}</link>
+            <description>{{ .Content | htmlUnescape }}</description>
+            <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" }}</pubDate>
+            <guid>{{ .Permalink }}</guid>
+        </item>
+        {{ end }}
+    </channel>
+</rss>

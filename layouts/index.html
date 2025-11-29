@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+<!-- Intro -->
+<p>{{ i18n "homepage.intro" | markdownify }}</p>
+            
+<!-- Description -->
+<p>{{ i18n "homepage.moreintro" | markdownify }}</p>
+
+<!-- Posts lists -->
+{{ $currentLang := $.Site.Language.Lang }}
+{{ $allPostsInLang := where (where .Site.RegularPages "Section" "posts") "Lang" $currentLang }}
+
+{{ range .Site.Params.homepage.blocks }}
+    {{ if .enabled }}
+        <p>
+            {{ if eq .type "all" }}{{ i18n .title_key }}{{ else if eq .type "category" }}{{ i18n "categoryTitle" .category }}{{ end }}
+        </p>
+        <ul>
+            {{ $postLimit := .limit | default 5 }}
+            {{ $filteredPosts := slice }}
+            {{ if eq .type "all" }}
+                {{ $filteredPosts = $allPostsInLang }}
+            {{ else if eq .type "category" }}
+                {{ $filteredPosts = where $allPostsInLang "Params.categories" "intersect" (slice .category) }}
+            {{ end }}
+            {{ range first $postLimit $filteredPosts }}
+                <li>
+                    <span>{{ .Date.Format ($.Site.Params.theme_config.date_format | default "02.01.2006") }}</span>
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </li>
+            {{ else }}
+                <li>{{ i18n "noPosts" | default "Brak postów do wyświetlenia." }}</li>
+            {{ end }}
+            {{ if gt (len $filteredPosts) $postLimit }}
+                <li>
+                    {{ $showMoreURL := "" }}
+                    {{ if and (eq .type "category") (not .show_more_url) }}
+                        {{ $showMoreURL = relLangURL (printf "/categories/%s" (.category | urlize)) }}
+                    {{ else }}
+                        {{ $showMoreURL = relLangURL .show_more_url }}
+                    {{ end }}
+                    <a href="{{ $showMoreURL }}">{{ i18n .show_more_key | default (i18n "showMoreDefault") }}</a>
+                </li>
+            {{ end }}
+        </ul>
+    {{ end }}
+{{ end }}
+
+{{ end }}

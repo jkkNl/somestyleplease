@@ -1,0 +1,88 @@
+baseURL = 'https://yourwebsite.com/'
+theme = 'somestyleplease'
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = true
+
+[languages]
+  [languages.en]
+    languageCode = 'en-US'
+    languageName = 'English'
+    languageDirection = 'ltr'
+    title = 'My website'
+    weight = 1
+
+  [languages.pl]
+    languageCode = 'pl-PL'
+    languageName = 'Polski'
+    languageDirection = 'ltr'
+    title = 'Moja strona internetowa'
+    weight = 2
+
+
+[permalinks]
+  posts = "/:contentbasename/"
+  pages = "/:contentbasename/"
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.41.0"
+    
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ''
+    hl_inline = false
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    noHl = false
+    style = 'rrt'
+    tabWidth = 4
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
+[params]
+  [params.theme_config]
+    appearance = "auto"
+    date_format = "02.01.2006"
+    categories = true
+    tags = true
+    post_limit = 100
+    show_more_url = "posts"
+    favicon = "favicon.ico"
+    copyright = "All rights reserved"
+    
+  [params.homepage]
+    [[params.homepage.blocks]]
+        enabled = true
+        type = "all"
+        title_key = "allPostsTitle"
+        limit = 100
+        show_more_key = "showMoreAll"
+        show_more_url = "/posts"
+        
+    [[params.homepage.blocks]]
+        enabled = false
+        type = "category"
+        category = "tech"
+        limit = 10
+        show_more_key = "showMoreTech"
+
+    [[params.homepage.blocks]]
+        enabled = false
+        type = "category"
+        category = "hobby"
+        limit = 10
+        show_more_key = "showMoreHobby"

@@ -1,0 +1,30 @@
+general:
+  back_home_text: "↩︎ back to homepage"
+  categories: "categories:"
+  tags: "tags:"
+  intro: "Intro1."
+  
+  
+homepage:
+  intro: "This is first line of intro. Edit that file in /i18n/ folder."
+  moreintro: "Second line of intro."
+  footer: "This is footer, you can add [rss here](../en/index.xml)  :-)"
+
+# Category page description
+categories:
+  tech: "Posts about technology"
+  hobby: "Here are posts about my hobby"
+
+# RSS feed description
+rss:
+  rss_title: "My website name"
+  rss_description: "RSS description."
+
+# Translation homepage posts list
+allPostsTitle: "Here are all posts:"
+showMoreAll: "See all posts"
+categoryTitle: "Posts in category: {{ . }}"
+showMoreCategory: "See more from this category"
+showMoreTech: "More about technology"
+showMoreHobby: "Show all DIY projects"
+showMoreDefault: "See more from this category"

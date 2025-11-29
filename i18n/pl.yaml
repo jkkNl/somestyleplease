@@ -1,0 +1,30 @@
+general:
+  back_home_text: "↩︎ Powrót do strony głównej"
+  categories: "kategorie:"
+  tags: "tagi:"
+  intro: "Intro1."
+  
+  
+homepage:
+  intro: "To jest pierwsza linia intro. Możesz edytować ten plik w folderze i18n."
+  moreintro: "To jest druga linia intro."
+  footer: "To jest footer do którego możesz dołączyć np. [rss w odpowiednim języku](../pl/index.xml)  :-)"
+
+# Category page description
+categories:
+  tech: "Wszystko o sprzęcie, oprogramowaniu, DIY:"
+  hobby: "Wszystkie moje projekty i pomysły poboczne:"
+
+# RSS feed description
+rss:
+  rss_title: "Nazwa mojej strony - kanał RSS"
+  rss_description: "Kanał RSS zawierający wpisy w języku polskim."
+
+# Translation homepage posts list
+allPostsTitle: "Wszystkie wpisy:"
+showMoreAll: "achiwum wpisów"
+categoryTitle: "Wpisy w kategorii: {{ . }}"
+showMoreCategory: "achiwum wpisów"
+showMoreTech: "Pokaż wszystkie wpisy"
+showMoreHobby: "Pokaż wszystkie wpisy z tej kategorii"
+showMoreDefault: "achiwum wpisów"

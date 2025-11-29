@@ -1,0 +1,14 @@
+{{ define "main" }}
+    {{ partial "back_link.html" . }}
+
+    <h1>{{ .Title }}</h1>
+    {{ $i18nID := printf "categories.%s" (.Title | lower | urlize) }}
+    {{ with i18n $i18nID }}
+        <p>{{ . }}</p>
+    {{ else }}
+        <p><em>No description found for this category.</em></p>
+    {{ end }}
+
+    {{ .Content }}
+    {{ partial "post_list.html" (dict "context" .) }}
+{{ end }}

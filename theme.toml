@@ -1,0 +1,16 @@
+name = "somestyleplease"
+license = "MIT"
+description = "blazing fast and clean Hugo theme based on hanwenguo/hugo-theme-nostyleplease."
+homepage = ""
+tags = ["blog", "minimalist", "clean"]
+features = []
+min_version = "0.41.0"
+
+[author]
+  name = "jkkNl"
+  homepage = "https://004822.xyz"
+
+[original]
+  name = "hanwenguo"
+  homepage = "https://hanwen.io/"
+  repo = "https://github.com/hanwenguo/hugo-theme-nostyleplease"

@@ -1,0 +1,48 @@
+{{ define "main" }}
+    <div class="back-and-meta">
+        {{ partial "back_link.html" . }}
+        <div class="post-meta">
+            {{ range .AllTranslations }}
+                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            {{ end }}
+        </div>
+    </div>
+
+
+    <article>
+        <h1>{{ .Title }}</h1>
+
+        {{ if .Params.toc }}
+            <aside {{ if .Params.tocBorder }} class="toc" {{ end }}>
+                {{ .TableOfContents }}
+            </aside>
+        {{ end }}
+
+        {{ .Content }}
+    </article>
+<p class="post-meta">
+        <time datetime="{{ .Date }}">
+            {{ .Date | time.Format site.Params.theme_config.date_format }}
+        </time>
+    <p class="post-meta">
+        {{ if site.Params.theme_config.categories }}
+            {{ with .Params.categories }}
+                {{ i18n "general.categories" }}
+                {{ $length := len . }}
+                {{ range $index, $element := . }}
+                    <a href="{{ (print "/categories/" $element | urlize) | relLangURL }}">{{ $element }}</a>{{ if lt (add $index 1) $length }},{{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+        {{ if site.Params.theme_config.tags }}
+            {{ with .Params.tags }}
+                {{ i18n "general.tags" }}
+                {{ $length := len . }}
+                {{ range $index, $element := . }}
+                    <a href="{{ (print "/tags/" $element | urlize) | relLangURL }}">{{ $element }}</a>{{ if lt (add $index 1) $length }},{{ end }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    </p>
+
+{{ end }}

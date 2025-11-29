@@ -1,0 +1,189 @@
+/* Theme Switcher Styles */
+@mixin theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color, $--highlight, $--title) {
+  background-color: $--bg-color;
+
+  color: $--primary-text-color;
+  a {
+    color: $--link-color;
+    text-decoration: none;
+    &:visited { color: $--visited-link-color; }
+    &:hover { text-decoration: underline; }
+  }
+
+  details summary {
+    color: $--link-color;
+    text-decoration: none;
+  }
+  .site-title {
+    color: $--title;
+  }
+  code:not(pre > code) {
+    background-color: $--primary-text-color;
+    color: $--bg-color;
+  }
+  *:target {
+    background: $--highlight;
+    color: $--primary-text-color;
+  }
+  table, th, td {
+    border: thin solid $--primary-text-color;
+  }
+  .toc {
+    border: thin solid $--link-color;
+    padding: 1rem;
+  }
+  .ascii {
+    font-size: 65%;
+    line-height: 1;
+    background: $--bg-color;
+  }
+  figcaption { color: $--secondary-text-color; }
+}
+
+/* @mixin theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color, $--highlight, $--title) { */
+
+@mixin dark-appearance {
+  @include theme(#0c0c0c, #eaeaea, #333333, #4990fc, #94befc, #042659, #eaeaea);
+}
+@mixin light-appearance {
+  @include theme(#ffffff, #212121, #dfedff, #0066ff, #004dc1, #FFFF00, #212121);
+}
+@mixin matrix-appearance {
+  @include theme(#000a1a, #c4ffc6, #161616, #c0ff00, #c0ff00, #007A35, #c4ffc6);
+}
+@mixin bear-appearance {
+  @include theme(#01242e, #eee, #eee, #8cc2dd, #8cc2dd, #003544, #eee);
+}
+@mixin together-appearance {
+  @include theme(#28010e, #db9ab1, #db9ab1, #c61783, #c61783, #6d0326, #c61783);
+}
+
+body[a="dark"] { @include dark-appearance; }
+body[a="light"] { @include light-appearance; }
+body[a="matrix"] { @include matrix-appearance; }
+body[a="bear"] { @include bear-appearance; }
+body[a="together"] { @include together-appearance; }
+
+@media (prefers-color-scheme: dark) {
+  body[a="auto"] { @include dark-appearance; }
+}
+
+@media (prefers-color-scheme: light) {
+  body[a="auto"] { @include light-appearance; }
+}
+
+/* Global Styles */
+html { height: 100%; }
+
+body {
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  min-height: 80%;
+  overflow-wrap: break-word;
+}
+
+.post-meta { text-align: right; }
+
+.back-and-meta {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2, h3, h4, h5, h6 { margin-top: 0.5rem; }
+
+hr { margin: 2rem 0; }
+
+p { margin: 1rem 0; }
+
+li { margin: 0.4rem 0; }
+
+.w {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0rem 2rem;
+}
+
+.toc {
+  padding: 1rem;
+}
+
+hr {
+  text-align: center;
+  border: 0;
+
+  &:before { content: '•••'; }
+  &:after { content: attr(data-content) '•••'; }
+}
+
+pre {
+  background: black;
+  padding: 1em;
+  overflow-x: auto; /* Fix pre content overflowing parent without scroll bar */
+}
+
+table { width: 100%; }
+
+table, th, td {
+  border: thin solid black;
+  border-collapse: collapse;
+  padding: 0.4rem;
+}
+
+code:not(pre > code) {
+  padding: 0.1em 0.2em;
+  font-size: 90%;
+}
+
+code.has-jax {
+  -webkit-font-smoothing: antialiased;
+  background: inherit !important;
+  border: none !important;
+  font-size: 100%;
+}
+
+blockquote {
+  font-style: italic;
+  border: thin solid black;
+  padding: 1rem;
+
+  p { margin: 0; }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+figcaption {
+  text-align: center;
+  opacity: 0.5;
+}
+
+/* Custom Header Styles */
+.site-header {
+    margin-bottom: 0.5rem; /* Zmniejsza odstęp między nagłówkiem a zawartością */
+}
+.site-title {
+    margin-bottom: 0.1rem; /* Jeszcze mniejszy odstęp między tytułem a nawigacją */
+    font-size: 2rem;
+}
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.1rem;
+    flex-wrap: wrap;
+}
+.menu-links {
+    display: flex;
+    gap: 1rem;
+}
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+}
