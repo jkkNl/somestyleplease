@@ -1,7 +1,7 @@
 +++
 title = 'some style please!'
 date = 2024-11-01T18:00:00+02:00
-draft = false
+draft = true
 toc = false
 tocBorder = false
 weight = 1
