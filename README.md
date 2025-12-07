@@ -1,7 +1,7 @@
 # some style please!
 Super fast and clean [Hugo](https://gohugo.io/) theme based on [nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease). I wanted to keep the minimalist and attractive design, but also add multilingual support and page support. I added more color options.
 
-![Colors](images/colors.webp)
+![Colors](https://github.com/jkkNl/somestyleplease/raw/main/images/colors.webp)
 
 ### [Visit theme demo in dark color scheme](https://004822.xyz/demosomestyleplease/).
 
