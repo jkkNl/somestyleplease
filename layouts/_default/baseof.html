@@ -37,5 +37,13 @@
             </footer>
         </div>
     </main>
+    {{- if .Params.custom_js -}}
+        {{- range .Params.custom_js -}}
+            {{ $js := resources.Get (print "js/" . ".js") }}
+            {{- if $js -}}
+                <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
 </body>
 </html>
