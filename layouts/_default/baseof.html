@@ -14,7 +14,8 @@
                     <div class="menu-links">
                         {{ $currentLang := $.Site.Language.Lang }}
                         {{ $pages := where (where .Site.RegularPages "Section" "pages") "Lang" $currentLang }}
-                        {{ range $pages }}
+                        {{ $nav_pages := where $pages "Params.navbar" "eq" true }}
+                        {{ range $nav_pages }}
                             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
                         {{ end }}
                     </div>
