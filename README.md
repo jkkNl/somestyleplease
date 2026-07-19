@@ -1,32 +1,32 @@
 # some style please!
 
-Minimalistyczny, szybki i responsywny motyw [Hugo](https://gohugo.io/) oparty na [nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease). Motyw zachowuje prosty, tekstowy charakter oryginału, dodając obsługę wielu języków, stron, taksonomii, podpisów obrazków, galerii i lekkich shortcode’ów.
+A minimalist, fast, and responsive [Hugo](https://gohugo.io/) theme based on [nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease). It preserves the original’s simple, text-focused character while adding multilingual support, pages, taxonomies, image captions, galleries, and lightweight shortcodes.
 
-### [Demo motywu](https://004822.xyz)
+### [Theme demo](https://004822.xyz)
 
-![Schematy kolorów](https://github.com/jkkNl/somestyleplease/raw/main/images/colors.webp)
+![Color schemes](https://github.com/jkkNl/somestyleplease/raw/main/images/colors.webp)
 
-## Funkcje
+## Features
 
-- minimalistyczny i responsywny interfejs;
-- kilka schematów kolorystycznych: `auto`, `light`, `dark`, `matrix`, `bear`, `together`;
-- obsługa wielu języków dla stron, wpisów, taksonomii i RSS;
-- automatyczny przełącznik języków pokazujący tylko dostępne tłumaczenia;
-- kategorie i tagi;
-- RSS dla poszczególnych języków;
-- favicon konfigurowany z poziomu parametrów motywu;
-- TOC z opcjonalną ramką;
-- MathJax;
-- podpisy obrazków i filmów z obsługą linków Markdown;
-- responsywne galerie obrazów bez JavaScriptu;
-- wyróżnione fragmenty tekstu bez dodatkowego globalnego CSS;
-- natywne przypisy Goldmarka w treści;
-- konfiguracja przez Hugo Pipes i fingerprinting CSS;
-- brak wymaganych zależności Node.js.
+- minimalist and responsive interface;
+- color schemes: `auto`, `light`, `dark`, `matrix`, `bear`, and `together`;
+- multilingual support for pages, posts, taxonomies, and RSS;
+- language switcher showing only available translations;
+- categories and tags;
+- language-specific RSS feeds;
+- configurable favicon;
+- optional bordered table of contents;
+- MathJax support;
+- image and video captions with Markdown link support;
+- responsive image galleries without JavaScript;
+- highlighted content without additional global CSS;
+- native Goldmark footnotes in page content;
+- Hugo Pipes and CSS fingerprinting;
+- no required Node.js dependencies.
 
-## Instalacja
+## Installation
 
-Sklonuj repozytorium lub dodaj je jako submoduł do `themes/somestyleplease`, a następnie ustaw motyw w konfiguracji Hugo.
+Clone the repository or add it as a submodule under `themes/somestyleplease`, then set the theme in your Hugo configuration.
 
 **TOML**
 
@@ -40,17 +40,17 @@ theme = "somestyleplease"
 theme: somestyleplease
 ~~~
 
-Przykładowe treści dostarczane z motywem mają `draft = true`. Aby zobaczyć je lokalnie, uruchom:
+Example content shipped with the theme uses `draft = true`. To render it locally, run:
 
 ~~~bash
 hugo server --buildDrafts
 ~~~
 
-W repozytorium znajduje się również demonstracyjny wpis `gallery-demo` pokazujący galerie, podpisy, linki w podpisach i wyróżnione fragmenty.
+The repository also includes a `gallery-demo` post showing galleries, captions, links in captions, and highlighted content.
 
-## Konfiguracja
+## Configuration
 
-Ustawienia motywu znajdują się w `params.theme_config`.
+Theme settings are configured under `params.theme_config`.
 
 **TOML**
 
@@ -79,50 +79,50 @@ params:
     favicon: favicon.ico
 ~~~
 
-Konfiguracja projektu użytkownika ma pierwszeństwo przed domyślnymi wartościami motywu.
+Your project configuration takes precedence over the theme defaults.
 
 ### Favicon
 
-Umieść plik w katalogu `static`:
+Place the file in the site’s `static` directory:
 
 ~~~text
 static/favicon.ico
 ~~~
 
-Następnie wskaż nazwę pliku:
+Then configure its filename:
 
 ~~~toml
 [params.theme_config]
 favicon = "favicon.ico"
 ~~~
 
-## Tworzenie treści
+## Creating content
 
 ### Front matter
 
-Motyw korzysta ze standardowego front matter Hugo. Najważniejsze pola:
+The theme uses standard Hugo front matter. The main supported fields are:
 
-| Pole | Typ | Zastosowanie |
+| Field | Type | Purpose |
 | --- | --- | --- |
-| `title` | string | Tytuł strony lub wpisu |
-| `date` | date | Data publikacji |
-| `draft` | bool | Ukrycie treści w zwykłym buildzie |
-| `categories` | array | Kategorie wpisu |
-| `tags` | array | Tagi wpisu |
-| `toc` | bool | Włączenie spisu treści |
-| `tocBorder` | bool | Dodanie ramki do spisu treści |
-| `mathjax` | bool | Włączenie MathJax na stronie |
-| `custom_js` | array | Pliki JS z `assets/js/` |
-| `weight` | int | Kolejność stron i elementów menu |
+| `title` | string | Page or post title |
+| `date` | date | Publication date |
+| `draft` | bool | Hide content from regular builds |
+| `categories` | array | Post categories |
+| `tags` | array | Post tags |
+| `toc` | bool | Enable the table of contents |
+| `tocBorder` | bool | Add a border to the table of contents |
+| `mathjax` | bool | Enable MathJax on the page |
+| `custom_js` | array | Load JS files from `assets/js/` |
+| `weight` | int | Page and menu ordering |
 
-Przykład:
+Example:
 
 ~~~toml
 +++
-title = "Mój wpis"
+title = "My post"
 date = 2025-07-19T12:00:00+02:00
 draft = false
-categories = ["technologia"]
+categories = ["technology"]
 tags = ["hugo", "markdown"]
 toc = true
 tocBorder = true
@@ -130,60 +130,60 @@ mathjax = false
 +++
 ~~~
 
-### Przypisy
+### Footnotes
 
-Przypisy należy dodawać w zwykłej treści Markdown, korzystając z natywnej składni Goldmarka:
-
-~~~markdown
-To jest tekst z przypisem[^1].
-
-[^1]: Treść przypisu.
-~~~
-
-Przypisy w podpisach obrazków nie są przechwytywane przez motyw. Dzięki temu Hugo zachowuje natywne i przewidywalne przetwarzanie przypisów.
-
-## Obrazy i wideo
-
-### Podpisy obrazków
-
-Opcjonalny tytuł obrazu jest wyświetlany jako wyśrodkowany podpis:
+Add footnotes to regular Markdown content using Goldmark’s native syntax:
 
 ~~~markdown
-![Tekst alternatywny](image.jpg "Widoczny podpis")
+This is text with a footnote[^1].
+
+[^1]: Footnote content.
 ~~~
 
-Podpis może zawierać podstawowy Markdown, w tym linki:
+Footnotes are not intercepted inside image captions. This keeps Hugo’s native and predictable footnote handling intact.
+
+## Images and video
+
+### Image captions
+
+Use the optional image title to display a centered caption:
 
 ~~~markdown
-![Zegarek](watch.webp "Zdjęcie z [Reddita](https://www.reddit.com/)")
+![Alternative text](image.jpg "Visible caption")
 ~~~
 
-Obrazy bez tytułu są renderowane bez podpisu. Tekst alternatywny pozostaje niezależny od podpisu i służy dostępności.
+Captions can contain basic Markdown, including links:
 
-### Wideo przez Markdown
+~~~markdown
+![Watch](watch.webp "Photo from [Reddit](https://www.reddit.com/)")
+~~~
 
-Wideo można osadzić tak samo jak obraz:
+Images without a title are rendered without a caption. Alternative text remains separate from the caption and is used for accessibility.
+
+### Video with Markdown
+
+Embed video using the same syntax as an image:
 
 ~~~markdown
 ![video](/attachment/example/video.webm)
 ~~~
 
-Motyw rozpoznaje również rozszerzenia `webm`, `mp4`, `m4v`, `ogv`, `ogg` i `mov`, więc tekst alternatywny może opisywać nagranie:
+The theme also detects the `webm`, `mp4`, `m4v`, `ogv`, `ogg`, and `mov` extensions, so the alternative text can describe the recording:
 
 ~~~markdown
-![Porównanie wskazówek](/attachment/example/video.webm "Podpis filmu")
+![Hand comparison](/attachment/example/video.webm "Video caption")
 ~~~
 
-Wideo otrzymuje kontrolki, `preload="metadata"` i responsywną szerokość.
+Videos include controls, `preload="metadata"`, and responsive sizing.
 
-## Shortcode’y
+## Shortcodes
 
-### Galerie obrazów
+### Image galleries
 
-Shortcode `gallery` tworzy responsywną galerię CSS Grid bez JavaScriptu:
+The `gallery` shortcode creates a responsive CSS Grid gallery without JavaScript:
 
 ~~~markdown
-{{< gallery label="Galeria zegarków" >}}
+{{< gallery label="Watch gallery" >}}
 
 ![Casio](casio.webp "Casio")
 ![Tissot](tissot.webp "Tissot")
@@ -192,68 +192,68 @@ Shortcode `gallery` tworzy responsywną galerię CSS Grid bez JavaScriptu:
 {{< /gallery >}}
 ~~~
 
-Podpisy oraz linki w podpisach działają tak samo jak przy pojedynczym obrazie. Galeria automatycznie dopasowuje liczbę kolumn do szerokości ekranu.
+Captions and links in captions work the same way as they do for individual images. The gallery automatically adapts the number of columns to the available width.
 
-### Wyróżniony fragment
+### Highlighted content
 
-Shortcode `highlight` otacza ważny fragment minimalistyczną ramką podobną do ramki TOC:
+The `highlight` shortcode surrounds an important fragment with a minimalist border similar to the table of contents:
 
 ~~~markdown
 {{< highlight >}}
 
-To jest ważna informacja z **pogrubieniem** i [linkiem](https://gohugo.io/).
+This is an important note with **bold text** and a [link](https://gohugo.io/).
 
 {{< /highlight >}}
 ~~~
 
-CSS wyróżnienia znajduje się bezpośrednio w shortcode, więc nie zwiększa globalnego arkusza stylów, jeśli funkcja nie jest używana.
+The highlight CSS is included directly in the shortcode, so it does not increase the global stylesheet when the feature is not used.
 
-### Szczegóły
+### Details
 
-Shortcode `details` tworzy rozwijany element HTML:
+The `details` shortcode creates a collapsible HTML element:
 
 ~~~markdown
-{{< details summary="Pokaż więcej" open="false" >}}
+{{< details summary="Show more" open="false" >}}
 
-Ukryta treść z **Markdownem**.
+Hidden content with **Markdown**.
 
 {{< /details >}}
 ~~~
 
-### Wideo przez shortcode
+### Video shortcode
 
-Dla zachowania zgodności dostępny jest również shortcode:
+A video shortcode is also available for compatibility:
 
 ~~~markdown
 {{< video src="/attachment/example/video.webm" >}}
 ~~~
 
-Dla nowych treści zalecana jest składnia Markdown opisana wyżej, ponieważ jest krótsza i korzysta z tego samego render hooka co obrazy.
+For new content, the Markdown syntax above is recommended because it is shorter and uses the same image render hook.
 
-### Matematyka
+### Mathematics
 
-Na stronie z `mathjax = true` można używać shortcode’ów `texi` i `texd`:
+On a page with `mathjax = true`, you can use the `texi` and `texd` shortcodes:
 
 ~~~markdown
 {{< texi "x^2 + y^2 = z^2" >}}
 ~~~
 
-## Taksonomie
+## Taxonomies
 
-Jeśli `categories = true` lub `tags = true`, motyw generuje strony kategorii i tagów. Nazwy terminów są wyświetlane małymi literami, a link powrotu do strony głównej otrzymuje taki sam górny odstęp jak w artykułach.
+When `categories = true` or `tags = true`, the theme generates category and tag pages. Term names are displayed in lowercase, and the homepage link has the same top spacing as it does in articles.
 
-Wpis może mieć wiele kategorii i tagów:
+A post can have multiple categories and tags:
 
 ~~~toml
-categories = ["zegarki", "technologia"]
+categories = ["watches", "technology"]
 tags = ["hugo", "markdown"]
 ~~~
 
-## Wielojęzyczność
+## Multilingual websites
 
-Motyw obsługuje strony, wpisy, taksonomie i RSS w wielu językach.
+The theme supports multiple languages for pages, posts, taxonomies, and RSS.
 
-### Konfiguracja języków
+### Language configuration
 
 **TOML**
 
@@ -290,9 +290,9 @@ languages:
     weight: 2
 ~~~
 
-### Pliki tłumaczeń
+### Translation files
 
-Używaj tego samego basename’u i dodawaj kod języka:
+Use the same basename with a language code suffix:
 
 ~~~text
 content/posts/my-post.en.md
@@ -301,18 +301,18 @@ content/pages/about.en.md
 content/pages/about.pl.md
 ~~~
 
-Przełącznik języków pokazuje tylko inne dostępne wersje tego samego zasobu. Jeśli dla strony nie istnieje tłumaczenie, nie pojawi się pusty lub niepotrzebny link.
+The language switcher shows only other available translations of the same resource. If no translation exists, no empty or unnecessary link is displayed.
 
-### Tłumaczenia interfejsu
+### Interface translations
 
-Dodaj pliki `i18n/<język>.yaml`, np.:
+Add `i18n/<language>.yaml` files, for example:
 
 ~~~text
 i18n/en.yaml
 i18n/pl.yaml
 ~~~
 
-Motyw korzysta m.in. z następujących kluczy:
+The theme uses keys such as:
 
 - `homepage.intro`;
 - `homepage.moreintro`;
@@ -322,31 +322,31 @@ Motyw korzysta m.in. z następujących kluczy:
 - `general.tags`;
 - `categories.<category-slug>`.
 
-Jeśli nie chcesz prefiksu `/en/` dla domyślnego języka, ustaw:
+To avoid the `/en/` prefix for the default language, set:
 
 ~~~toml
 defaultContentLanguageInSubdir = false
 ~~~
 
-## Dostosowywanie motywu
+## Customizing the theme
 
-Hugo pozwala nadpisywać pliki motywu w katalogu projektu. Przykładowo własny footer można umieścić w:
+Hugo allows you to override theme files in the project directory. For example, a custom footer can be placed at:
 
 ~~~text
 layouts/partials/footer.html
 ~~~
 
-Własne pliki CSS i JavaScript można dodawać w katalogach:
+Custom CSS and JavaScript files can be added under:
 
 ~~~text
 assets/css/
 assets/js/
 ~~~
 
-Motyw korzysta z Hugo Pipes, kompresji i fingerprintingu arkusza CSS. Nie wymaga Node.js ani npm.
+The theme uses Hugo Pipes, minification, and CSS fingerprinting. Node.js and npm are not required.
 
-## Licencja i podziękowania
+## License and acknowledgements
 
-Motyw jest dostępny na licencji [MIT](https://opensource.org/licenses/MIT). Zgłoszenia błędów i pull requesty są mile widziane.
+This theme is available under the [MIT License](https://opensource.org/licenses/MIT). Bug reports and pull requests are welcome.
 
-Część kodu pochodzi z projektów [hanwenguo/hugo-theme-nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease) i [wooseopkim/hugo-theme-nostyleplease](https://github.com/wooseopkim/hugo-theme-nostyleplease). Część przykładowych treści pochodzi z [tego motywu Jekyll](https://github.com/huangyz0918/moving).
+Some code comes from [hanwenguo/hugo-theme-nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease) and [wooseopkim/hugo-theme-nostyleplease](https://github.com/wooseopkim/hugo-theme-nostyleplease). Some example content comes from [this Jekyll theme](https://github.com/huangyz0918/moving).
