@@ -1,168 +1,352 @@
 # some style please!
-Super fast and clean [Hugo](https://gohugo.io/) theme based on [nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease). I wanted to keep the minimalist and attractive design, but also add multilingual support and page support. I added more color options.
 
-![Colors](https://github.com/jkkNl/somestyleplease/raw/main/images/colors.webp)
+Minimalistyczny, szybki i responsywny motyw [Hugo](https://gohugo.io/) oparty na [nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease). Motyw zachowuje prosty, tekstowy charakter oryginału, dodając obsługę wielu języków, stron, taksonomii, podpisów obrazków, galerii i lekkich shortcode’ów.
 
-### [Visit theme demo in dark color scheme](https://004822.xyz/demosomestyleplease/).
+### [Demo motywu](https://004822.xyz)
 
-## Features
-* Super fast (**~8 KB of CSS!**)
-* Multilingual support
-* Many color schemes (light, dark, matrix, bear, together and auto based on system preference)
-* Responsive and content first (typography optimized for maximum readability)
-* RSS feed (with support for multiple languages)
-* MathJax support
+![Schematy kolorów](https://github.com/jkkNl/somestyleplease/raw/main/images/colors.webp)
 
-## Installation
-The easiest way is to clone this repo (or add as a submodule) to `themes/somestyleplease`, then set the theme in your Hugo config (`hugo.toml` / `hugo.yaml` / `config.toml` / `config.yaml`).
+## Funkcje
+
+- minimalistyczny i responsywny interfejs;
+- kilka schematów kolorystycznych: `auto`, `light`, `dark`, `matrix`, `bear`, `together`;
+- obsługa wielu języków dla stron, wpisów, taksonomii i RSS;
+- automatyczny przełącznik języków pokazujący tylko dostępne tłumaczenia;
+- kategorie i tagi;
+- RSS dla poszczególnych języków;
+- favicon konfigurowany z poziomu parametrów motywu;
+- TOC z opcjonalną ramką;
+- MathJax;
+- podpisy obrazków i filmów z obsługą linków Markdown;
+- responsywne galerie obrazów bez JavaScriptu;
+- wyróżnione fragmenty tekstu bez dodatkowego globalnego CSS;
+- natywne przypisy Goldmarka w treści;
+- konfiguracja przez Hugo Pipes i fingerprinting CSS;
+- brak wymaganych zależności Node.js.
+
+## Instalacja
+
+Sklonuj repozytorium lub dodaj je jako submoduł do `themes/somestyleplease`, a następnie ustaw motyw w konfiguracji Hugo.
 
 **TOML**
-```toml
+
+~~~toml
 theme = "somestyleplease"
-```
+~~~
 
 **YAML**
-```yaml
+
+~~~yaml
 theme: somestyleplease
-```
+~~~
 
-Pages shipped with the theme as examples use `draft: true` in front matter, so use `--buildDrafts` to render them.
+Przykładowe treści dostarczane z motywem mają `draft = true`. Aby zobaczyć je lokalnie, uruchom:
 
-## Usage
-Edit your Hugo config file (`hugo.toml` / `hugo.yaml` / `config.toml` / `config.yaml`) to customize title, languages, homepage blocks, date format and appearance.
+~~~bash
+hugo server --buildDrafts
+~~~
 
-Theme-specific options are under `params.theme_config`.
+W repozytorium znajduje się również demonstracyjny wpis `gallery-demo` pokazujący galerie, podpisy, linki w podpisach i wyróżnione fragmenty.
+
+## Konfiguracja
+
+Ustawienia motywu znajdują się w `params.theme_config`.
 
 **TOML**
-```toml
+
+~~~toml
 [params.theme_config]
 appearance = "auto" # auto | light | dark | matrix | bear | together
 date_format = "02.01.2006"
 categories = true
 tags = true
-```
+post_limit = 100
+show_more_url = "posts"
+favicon = "favicon.ico"
+~~~
 
 **YAML**
-```yaml
+
+~~~yaml
 params:
   theme_config:
-    appearance: auto # auto | light | dark | matrix | bear | together
+    appearance: auto
     date_format: "02.01.2006"
     categories: true
     tags: true
-```
+    post_limit: 100
+    show_more_url: posts
+    favicon: favicon.ico
+~~~
 
-Your site config in the Hugo project root overrides theme defaults, so copy the values you want from `themes/somestyleplease/config.toml`.
+Konfiguracja projektu użytkownika ma pierwszeństwo przed domyślnymi wartościami motywu.
 
-### Available front matter
-You can use standard Hugo front matter plus the theme options below:
+### Favicon
 
-| Key | Type | What it does |
+Umieść plik w katalogu `static`:
+
+~~~text
+static/favicon.ico
+~~~
+
+Następnie wskaż nazwę pliku:
+
+~~~toml
+[params.theme_config]
+favicon = "favicon.ico"
+~~~
+
+## Tworzenie treści
+
+### Front matter
+
+Motyw korzysta ze standardowego front matter Hugo. Najważniejsze pola:
+
+| Pole | Typ | Zastosowanie |
 | --- | --- | --- |
-| `title` | string | Page/post title |
-| `date` | date | Publish date |
-| `draft` | bool | Keep content as draft |
-| `categories` | array | Categories list (used for category pages and homepage blocks by category) |
-| `tags` | array | Tags list |
-| `toc` | bool | Show table of contents |
-| `tocBorder` | bool | Add border around table of contents |
-| `mathjax` | bool | Enable MathJax on that page/post |
-| `custom_js` | array | Load JS from `assets/js/<name>.js` (use names without `.js`) |
-| `weight` | int | Order pages in menus/lists |
+| `title` | string | Tytuł strony lub wpisu |
+| `date` | date | Data publikacji |
+| `draft` | bool | Ukrycie treści w zwykłym buildzie |
+| `categories` | array | Kategorie wpisu |
+| `tags` | array | Tagi wpisu |
+| `toc` | bool | Włączenie spisu treści |
+| `tocBorder` | bool | Dodanie ramki do spisu treści |
+| `mathjax` | bool | Włączenie MathJax na stronie |
+| `custom_js` | array | Pliki JS z `assets/js/` |
+| `weight` | int | Kolejność stron i elementów menu |
 
-Example (TOML front matter):
+Przykład:
 
-```toml
+~~~toml
 +++
-title = "My post"
-date = 2026-07-09T10:00:00+00:00
+title = "Mój wpis"
+date = 2025-07-19T12:00:00+02:00
 draft = false
-categories = ["tech"]
-tags = ["hugo", "theme"]
+categories = ["technologia"]
+tags = ["hugo", "markdown"]
 toc = true
 tocBorder = true
 mathjax = false
 +++
-```
+~~~
 
-Example (YAML front matter):
+### Przypisy
 
-```yaml
----
-title: "My post"
-date: 2026-07-09T10:00:00+00:00
-draft: false
-categories: ["tech"]
-tags: ["hugo", "theme"]
-toc: true
-tocBorder: true
-mathjax: false
----
-```
+Przypisy należy dodawać w zwykłej treści Markdown, korzystając z natywnej składni Goldmarka:
 
-### Multilingual website
-This theme supports multilingual sites for homepage, pages, posts, taxonomies and RSS.
+~~~markdown
+To jest tekst z przypisem[^1].
 
-1. Configure languages in your Hugo config (`hugo.toml` / `hugo.yaml` / `config.toml` / `config.yaml`):
+[^1]: Treść przypisu.
+~~~
+
+Przypisy w podpisach obrazków nie są przechwytywane przez motyw. Dzięki temu Hugo zachowuje natywne i przewidywalne przetwarzanie przypisów.
+
+## Obrazy i wideo
+
+### Podpisy obrazków
+
+Opcjonalny tytuł obrazu jest wyświetlany jako wyśrodkowany podpis:
+
+~~~markdown
+![Tekst alternatywny](image.jpg "Widoczny podpis")
+~~~
+
+Podpis może zawierać podstawowy Markdown, w tym linki:
+
+~~~markdown
+![Zegarek](watch.webp "Zdjęcie z [Reddita](https://www.reddit.com/)")
+~~~
+
+Obrazy bez tytułu są renderowane bez podpisu. Tekst alternatywny pozostaje niezależny od podpisu i służy dostępności.
+
+### Wideo przez Markdown
+
+Wideo można osadzić tak samo jak obraz:
+
+~~~markdown
+![video](/attachment/example/video.webm)
+~~~
+
+Motyw rozpoznaje również rozszerzenia `webm`, `mp4`, `m4v`, `ogv`, `ogg` i `mov`, więc tekst alternatywny może opisywać nagranie:
+
+~~~markdown
+![Porównanie wskazówek](/attachment/example/video.webm "Podpis filmu")
+~~~
+
+Wideo otrzymuje kontrolki, `preload="metadata"` i responsywną szerokość.
+
+## Shortcode’y
+
+### Galerie obrazów
+
+Shortcode `gallery` tworzy responsywną galerię CSS Grid bez JavaScriptu:
+
+~~~markdown
+{{< gallery label="Galeria zegarków" >}}
+
+![Casio](casio.webp "Casio")
+![Tissot](tissot.webp "Tissot")
+![Tudor](tudor.webp "Tudor")
+
+{{< /gallery >}}
+~~~
+
+Podpisy oraz linki w podpisach działają tak samo jak przy pojedynczym obrazie. Galeria automatycznie dopasowuje liczbę kolumn do szerokości ekranu.
+
+### Wyróżniony fragment
+
+Shortcode `highlight` otacza ważny fragment minimalistyczną ramką podobną do ramki TOC:
+
+~~~markdown
+{{< highlight >}}
+
+To jest ważna informacja z **pogrubieniem** i [linkiem](https://gohugo.io/).
+
+{{< /highlight >}}
+~~~
+
+CSS wyróżnienia znajduje się bezpośrednio w shortcode, więc nie zwiększa globalnego arkusza stylów, jeśli funkcja nie jest używana.
+
+### Szczegóły
+
+Shortcode `details` tworzy rozwijany element HTML:
+
+~~~markdown
+{{< details summary="Pokaż więcej" open="false" >}}
+
+Ukryta treść z **Markdownem**.
+
+{{< /details >}}
+~~~
+
+### Wideo przez shortcode
+
+Dla zachowania zgodności dostępny jest również shortcode:
+
+~~~markdown
+{{< video src="/attachment/example/video.webm" >}}
+~~~
+
+Dla nowych treści zalecana jest składnia Markdown opisana wyżej, ponieważ jest krótsza i korzysta z tego samego render hooka co obrazy.
+
+### Matematyka
+
+Na stronie z `mathjax = true` można używać shortcode’ów `texi` i `texd`:
+
+~~~markdown
+{{< texi "x^2 + y^2 = z^2" >}}
+~~~
+
+## Taksonomie
+
+Jeśli `categories = true` lub `tags = true`, motyw generuje strony kategorii i tagów. Nazwy terminów są wyświetlane małymi literami, a link powrotu do strony głównej otrzymuje taki sam górny odstęp jak w artykułach.
+
+Wpis może mieć wiele kategorii i tagów:
+
+~~~toml
+categories = ["zegarki", "technologia"]
+tags = ["hugo", "markdown"]
+~~~
+
+## Wielojęzyczność
+
+Motyw obsługuje strony, wpisy, taksonomie i RSS w wielu językach.
+
+### Konfiguracja języków
 
 **TOML**
-```toml
+
+~~~toml
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 
 [languages]
   [languages.en]
-    languageCode = "en-US"
-    languageName = "English"
+    locale = "en-US"
+    label = "English"
     weight = 1
 
   [languages.pl]
-    languageCode = "pl-PL"
-    languageName = "Polski"
+    locale = "pl-PL"
+    label = "Polski"
     weight = 2
-```
+~~~
 
 **YAML**
-```yaml
+
+~~~yaml
 defaultContentLanguage: en
 defaultContentLanguageInSubdir: true
 
 languages:
   en:
-    languageCode: en-US
-    languageName: English
+    locale: en-US
+    label: English
     weight: 1
   pl:
-    languageCode: pl-PL
-    languageName: Polski
+    locale: pl-PL
+    label: Polski
     weight: 2
-```
+~~~
 
-2. Create translated content files using language suffixes and the same basename:
+### Pliki tłumaczeń
 
-- `content/posts/my-post.en.md`
-- `content/posts/my-post.pl.md`
-- `content/pages/about.en.md`
-- `content/pages/about.pl.md`
+Używaj tego samego basename’u i dodawaj kod języka:
 
-The basename must match (`my-post` / `about`) so Hugo can link translations together.
+~~~text
+content/posts/my-post.en.md
+content/posts/my-post.pl.md
+content/pages/about.en.md
+content/pages/about.pl.md
+~~~
 
-3. Add translation strings in your site `i18n/<lang>.yaml` (recommended), for example:
+Przełącznik języków pokazuje tylko inne dostępne wersje tego samego zasobu. Jeśli dla strony nie istnieje tłumaczenie, nie pojawi się pusty lub niepotrzebny link.
 
-- `homepage.intro`
-- `homepage.moreintro`
-- `homepage.footer`
-- `general.back_home_text`
-- `general.categories`
-- `general.tags`
-- `categories.<category-slug>`
+### Tłumaczenia interfejsu
 
-When more than one language is configured, the language switcher and translation links are shown automatically.
+Dodaj pliki `i18n/<język>.yaml`, np.:
 
-> Tip: if you want default language without `/en/` in URLs, set `defaultContentLanguageInSubdir` to `false`.
+~~~text
+i18n/en.yaml
+i18n/pl.yaml
+~~~
 
-## Thanks
-Some of the code comes from  [hanwenguo/hugo-theme-nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease) and  [wooseopkim/hugo-theme-nostyleplease](https://github.com/wooseopkim/hugo-theme-nostyleplease). Some of the test pages are from [this jekyll theme](https://github.com/huangyz0918/moving). I'm very grateful to everyone who contributed to this template.
+Motyw korzysta m.in. z następujących kluczy:
 
-## License and contributing
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT). Bug reports and pull requests are welcome on GitHub.
+- `homepage.intro`;
+- `homepage.moreintro`;
+- `homepage.footer`;
+- `general.back_home_text`;
+- `general.categories`;
+- `general.tags`;
+- `categories.<category-slug>`.
+
+Jeśli nie chcesz prefiksu `/en/` dla domyślnego języka, ustaw:
+
+~~~toml
+defaultContentLanguageInSubdir = false
+~~~
+
+## Dostosowywanie motywu
+
+Hugo pozwala nadpisywać pliki motywu w katalogu projektu. Przykładowo własny footer można umieścić w:
+
+~~~text
+layouts/partials/footer.html
+~~~
+
+Własne pliki CSS i JavaScript można dodawać w katalogach:
+
+~~~text
+assets/css/
+assets/js/
+~~~
+
+Motyw korzysta z Hugo Pipes, kompresji i fingerprintingu arkusza CSS. Nie wymaga Node.js ani npm.
+
+## Licencja i podziękowania
+
+Motyw jest dostępny na licencji [MIT](https://opensource.org/licenses/MIT). Zgłoszenia błędów i pull requesty są mile widziane.
+
+Część kodu pochodzi z projektów [hanwenguo/hugo-theme-nostyleplease](https://github.com/hanwenguo/hugo-theme-nostyleplease) i [wooseopkim/hugo-theme-nostyleplease](https://github.com/wooseopkim/hugo-theme-nostyleplease). Część przykładowych treści pochodzi z [tego motywu Jekyll](https://github.com/huangyz0918/moving).

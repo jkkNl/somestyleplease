@@ -5,16 +5,16 @@ defaultContentLanguageInSubdir = true
 
 [languages]
   [languages.en]
-    languageCode = 'en-US'
-    languageName = 'English'
-    languageDirection = 'ltr'
+    locale = 'en-US'
+    label = 'English'
+    direction = 'ltr'
     title = 'My website'
     weight = 1
 
   [languages.pl]
-    languageCode = 'pl-PL'
-    languageName = 'Polski'
-    languageDirection = 'ltr'
+    locale = 'pl-PL'
+    label = 'Polski'
+    direction = 'ltr'
     title = 'Moja strona internetowa'
     weight = 2
 
@@ -31,6 +31,7 @@ defaultContentLanguageInSubdir = true
 [markup]
   [markup.goldmark]
     [markup.goldmark.parser]
+      wrapStandAloneImageWithinParagraph = false
       [markup.goldmark.parser.attribute]
         block = true
         title = true

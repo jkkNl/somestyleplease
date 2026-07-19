@@ -1,0 +1,42 @@
+{{- $src := .Destination | safeURL -}}
+{{- $alt := .Text | plainify -}}
+{{- $mediaPath := lower .Destination -}}
+{{- $isVideo := or
+  (eq (lower $alt) "video")
+  (strings.HasSuffix $mediaPath ".webm")
+  (strings.HasSuffix $mediaPath ".mp4")
+  (strings.HasSuffix $mediaPath ".m4v")
+  (strings.HasSuffix $mediaPath ".ogv")
+  (strings.HasSuffix $mediaPath ".ogg")
+  (strings.HasSuffix $mediaPath ".mov")
+-}}
+{{- $caption := "" -}}
+
+{{- with .Title -}}
+  {{- /* Keep the caption phrasing content valid inside the media wrapper. */ -}}
+  {{- $caption = . | markdownify | replaceRE `(?s)^<p>(.*)</p>$` `${1}` -}}
+{{- end -}}
+
+{{- if $isVideo -}}
+  {{- if .Title -}}
+    <span class="media-figure">
+      <video controls preload="metadata" aria-label="{{ $alt }}">
+        <source src="{{ $src }}">
+        Your browser does not support the video tag.
+      </video>
+      <span class="media-caption">{{ $caption | safeHTML }}</span>
+    </span>
+  {{- else -}}
+    <video controls preload="metadata" aria-label="{{ $alt }}">
+      <source src="{{ $src }}">
+      Your browser does not support the video tag.
+    </video>
+  {{- end -}}
+{{- else if .Title -}}
+  <span class="media-figure">
+    <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    <span class="media-caption">{{ $caption | safeHTML }}</span>
+  </span>
+{{- else -}}
+  <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+{{- end -}}

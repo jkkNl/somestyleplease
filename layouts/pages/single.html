@@ -1,10 +1,10 @@
 {{ define "main" }}
     <div class="back-and-meta">
         {{ partial "back_link.html" . }}
-        {{ if gt (len .AllTranslations) 1 }}
+        {{ with .Translations }}
         <div class="post-meta">
-            {{ range .AllTranslations }}
-                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            {{ range . }}
+                <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
             {{ end }}
         </div>
         {{ end }}

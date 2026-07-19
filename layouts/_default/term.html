@@ -1,7 +1,9 @@
 {{ define "main" }}
-{{ partial "back_link.html" .}}
+<div class="taxonomy-back-link">
+    {{ partial "back_link.html" . }}
+</div>
 
-<h1>{{ .Title }}</h1>
+<h1>{{ .Data.Term | lower }}</h1>
 
 {{ .Content }}
 {{ partial "post_list.html" (dict "context" .)}}

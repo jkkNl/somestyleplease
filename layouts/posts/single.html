@@ -1,10 +1,10 @@
 {{ define "main" }}
     <div class="back-and-meta">
         {{ partial "back_link.html" . }}
-        {{ if gt (len .AllTranslations) 1 }}
+        {{ with .Translations }}
         <div class="post-meta">
-            {{ range .AllTranslations }}
-                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+            {{ range . }}
+                <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
             {{ end }}
         </div>
         {{ end }}
@@ -22,10 +22,11 @@
 
         {{ .Content }}
     </article>
-<p class="post-meta">
-        <time datetime="{{ .Date }}">
+    <p class="post-meta">
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
             {{ .Date | time.Format site.Params.theme_config.date_format }}
         </time>
+    </p>
     <p class="post-meta">
         {{ if site.Params.theme_config.categories }}
             {{ with .Params.categories }}

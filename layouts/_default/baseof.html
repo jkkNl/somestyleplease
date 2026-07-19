@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode }}">
+<html lang="{{ $.Site.Language.Locale }}">
 <head>
     {{- partial "head.html" . -}}
 </head>
@@ -21,9 +21,9 @@
                     </div>
                 
                     <div class="language-switcher">
-                        {{ if gt (len $.Site.Home.AllTranslations) 1 }}
-                            {{ range $.Site.Home.AllTranslations }}
-                                <a href="{{ .Permalink }}">{{ .Language.LanguageName }}</a>
+                        {{ with $.Site.Home.Translations }}
+                            {{ range . }}
+                                <a href="{{ .Permalink }}">{{ .Language.Label }}</a>
                             {{ end }}
                         {{ end }}
                     </div>

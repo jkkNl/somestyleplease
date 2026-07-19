@@ -19,7 +19,9 @@
   {{ template "_internal/schema.html" . }}
 
 
-  <link rel="icon" type="image/x-icon" href="/{{ .Site.Params.favicon | relURL }}">
+  {{ with .Site.Params.theme_config.favicon }}
+    <link rel="icon" href="{{ . | relURL }}">
+  {{ end }}
   {{ $options := (dict "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction)) }}
   {{ $sass := resources.Get "css/main.scss" }}
   {{ $style := $sass | css.Sass $options | resources.Fingerprint "sha512" }}
